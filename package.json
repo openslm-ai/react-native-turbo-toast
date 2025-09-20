@@ -1,0 +1,87 @@
+{
+  "name": "react-native-turbo-toast",
+  "version": "0.1.0",
+  "description": "Lightning-fast toast notifications for React Native with Fabric and TurboModules",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "types": "lib/typescript/src/index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check --write .",
+    "format": "biome format --write .",
+    "test": "bun test",
+    "prepare": "bob build",
+    "release": "release-it",
+    "example": "cd example && bun run"
+  },
+  "keywords": [
+    "react-native",
+    "ios",
+    "android",
+    "web",
+    "toast",
+    "snackbar",
+    "notification",
+    "fabric",
+    "turbomodule",
+    "new-architecture",
+    "jsi"
+  ],
+  "author": "Anivar Aravind <ping@anivar.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/anivar/react-native-turbo-toast",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anivar/react-native-turbo-toast.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anivar/react-native-turbo-toast/issues"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": ">=0.81.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.4",
+    "@react-native/babel-preset": "^0.81.0",
+    "@react-native/codegen": "^0.81.0",
+    "@react-native/typescript-config": "^0.81.0",
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "react-native": "^0.81.0",
+    "react-native-builder-bob": "^0.40.0",
+    "release-it": "^17.0.0",
+    "typescript": "^5.5.0"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
+  },
+  "codegenConfig": {
+    "name": "RNTurboToastSpec",
+    "type": "all",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.turbo.toast"
+    }
+  },
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "react-native-turbo-toast.podspec",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ]
+}
