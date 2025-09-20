@@ -1,5 +1,5 @@
 import type { ViewProps } from 'react-native'
-import type { DirectEventHandler, Double, Int32 } from 'react-native/Libraries/Types/CodegenTypes'
+import type { DirectEventHandler, Double } from 'react-native/Libraries/Types/CodegenTypes'
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
 
 interface NativeProps extends ViewProps {
@@ -10,9 +10,9 @@ interface NativeProps extends ViewProps {
   backgroundColor?: string
   textColor?: string
   visible?: boolean
-  onShow?: DirectEventHandler<{}>
-  onHide?: DirectEventHandler<{}>
-  onPress?: DirectEventHandler<{}>
+  onShow?: DirectEventHandler<Record<string, never>>
+  onHide?: DirectEventHandler<Record<string, never>>
+  onPress?: DirectEventHandler<Record<string, never>>
 }
 
 export default codegenNativeComponent<NativeProps>('TurboToastView', {

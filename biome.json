@@ -35,6 +35,6 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["src/**/*", "example/**/*"]
+    "includes": ["src/**/*", "example/**/*", "!src/wasm/**/*"]
   }
 }

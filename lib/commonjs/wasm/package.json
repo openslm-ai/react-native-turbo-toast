@@ -1,0 +1,15 @@
+{
+  "name": "turbo-toast-core",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "turbo_toast_core_bg.wasm",
+    "turbo_toast_core.js",
+    "turbo_toast_core.d.ts"
+  ],
+  "main": "turbo_toast_core.js",
+  "types": "turbo_toast_core.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

@@ -1,7 +1,7 @@
 import type { TurboModule } from 'react-native'
 import { TurboModuleRegistry } from 'react-native'
 
-export interface ToastOptions {
+export interface NativeToastOptions {
   message: string
   duration?: 'short' | 'long' | number
   position?: 'top' | 'center' | 'bottom'
@@ -16,7 +16,7 @@ export interface ToastOptions {
 }
 
 export interface Spec extends TurboModule {
-  show(options: ToastOptions): Promise<void>
+  show(options: NativeToastOptions): Promise<void>
   hide(): void
   hideAll(): void
 }

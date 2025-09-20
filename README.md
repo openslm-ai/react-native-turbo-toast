@@ -1,36 +1,37 @@
 # react-native-turbo-toast 🍞
 
-Lightning-fast toast notifications for React Native with the new architecture (Fabric & TurboModules).
+High-performance toast notifications for React Native using the New Architecture (Fabric & TurboModules). Direct JSI calls for 3x faster performance.
 
 [![npm version](https://img.shields.io/npm/v/react-native-turbo-toast.svg)](https://www.npmjs.com/package/react-native-turbo-toast)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![React Native](https://img.shields.io/badge/React%20Native-0.81+-blue.svg)](https://reactnative.dev)
+[![React Native](https://img.shields.io/badge/React%20Native-0.80+-blue.svg)](https://reactnative.dev)
 [![New Architecture](https://img.shields.io/badge/New%20Architecture-Ready-green.svg)](https://reactnative.dev/docs/the-new-architecture/landing-page)
 
 ## ✨ Features
 
-- 🚀 **TurboModule** powered - Direct JSI calls, no bridge overhead
-- 🎨 **Fabric Renderer** - Smooth 60fps animations
+- 🚀 **3x Faster** - Direct JSI calls eliminate bridge overhead
+- ⚡ **60fps Animations** - Fabric renderer ensures smooth transitions
 - 📱 **Cross-platform** - iOS, Android, and Web support
-- 🎯 **Type-safe** - Full TypeScript support with Codegen
-- 📦 **Tiny** - < 20KB bundle size
-- ⚡ **Queue Management** - Automatic toast queueing
-- 🎨 **Customizable** - Themes, positions, durations
+- 🎯 **Type-safe** - Full TypeScript with auto-completion
+- 📦 **Lightweight** - < 20KB base bundle size
+- 🔄 **Smart Queue** - Priority-based toast management
+- 🎨 **Fully Customizable** - Colors, positions, animations, actions
 
-## 🔥 Why Turbo Toast?
+## 🏗 Architecture
 
-Traditional React Native toast libraries use the old bridge architecture, causing:
-- Async communication delays
-- JSON serialization overhead
-- Dropped frames during animations
-
-**Turbo Toast** uses the new architecture for:
-- Synchronous native calls via JSI
-- Direct memory access
-- Guaranteed 60fps animations
-- 3x faster show/hide operations
+Built with React Native's New Architecture:
+- **TurboModules**: Direct native module communication via JSI
+- **Fabric Renderer**: Native view rendering for smooth animations
+- **Codegen**: Automatic native code generation from TypeScript
 
 ## 📦 Installation
+
+### Prerequisites
+- React Native 0.80.0 or higher
+- React 19.0.0 or higher
+- New Architecture enabled ([Migration Guide](https://reactnative.dev/docs/new-architecture-intro))
+
+### Install
 
 ```bash
 npm install react-native-turbo-toast
@@ -50,7 +51,18 @@ cd ios && pod install
 
 No additional setup needed! The new architecture is automatically configured.
 
-## 🚀 Usage
+### Enable New Architecture (if not already enabled)
+
+```bash
+# iOS
+cd ios
+RCT_NEW_ARCH_ENABLED=1 pod install
+
+# Android - in gradle.properties
+newArchEnabled=true
+```
+
+## 🚀 Quick Start
 
 ```tsx
 import Toast from 'react-native-turbo-toast'
@@ -96,24 +108,87 @@ Toast.hideAll()
 | `icon` | `string` | Based on type | Custom icon |
 | `action` | `{text: string, onPress: () => void}` | undefined | Action button |
 
-## 🏗 New Architecture
+## 🔄 Migration Guide
 
-This library is built specifically for React Native's new architecture:
+### Basic Migration
 
-- **TurboModules**: Native module using C++ TurboModule spec
-- **Fabric**: Native component using Fabric renderer
-- **JSI**: Direct JavaScript Interface for synchronous calls
-- **Codegen**: Automatic native code generation from TypeScript
+If you're migrating from another toast library, the API is similar:
 
-### Requirements
+```tsx
+import Toast from 'react-native-turbo-toast'
 
-- React Native 0.81.0 or higher
-- New Architecture enabled
+// Simple usage
+Toast.show('Hello World')
+
+// With options
+Toast.show({
+  message: 'Success!',
+  type: 'success',
+  duration: 'short',
+  position: 'bottom'
+})
+```
+
+## 🛠 Troubleshooting
+
+### Toast not showing?
+1. Ensure New Architecture is enabled
+2. Clean and rebuild: `cd ios && pod install && cd .. && yarn start --reset-cache`
+3. Check that peer dependencies match requirements
+
+### Build errors on iOS?
+```bash
+cd ios
+rm -rf Pods Podfile.lock
+RCT_NEW_ARCH_ENABLED=1 pod install
+```
+
+### TypeScript errors?
+```bash
+yarn typecheck # Check for type issues
+yarn add @types/react@^19.0.0 # Update React types
+```
+
+## 📊 Technical Specifications
+
+- **Bundle Size**: < 20KB (core JavaScript)
+- **Animation**: 60fps using Fabric renderer
+- **TypeScript**: Full type definitions with auto-completion
+- **Platform Support**: iOS, Android, and Web
+- **React Native**: 0.80.0+ with New Architecture
+- **React**: 19.0.0+
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [contributing guide](CONTRIBUTING.md) to get started.
+
+## 📚 Advanced Usage
+
+### Priority Queue
+```tsx
+// High priority toast (shows immediately)
+Toast.show({
+  message: 'Urgent!',
+  priority: 10
+})
+
+// Normal priority
+Toast.show({
+  message: 'Regular notification'
+})
+```
+
+### Custom Styling
+```tsx
+Toast.configure({
+  defaultOptions: {
+    backgroundColor: '#333',
+    textColor: '#fff',
+    animationDuration: 250
+  }
+})
+```
 
 ## 📄 License
 
 MIT © [Anivar Aravind](https://github.com/anivar)
-
----
-
-Made with ❤️ using React Native's new architecture

@@ -15,7 +15,8 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "lib": ["ES2022", "DOM", "WebWorker"]
   },
   "include": ["src/**/*"],
   "exclude": [

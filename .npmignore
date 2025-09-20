@@ -1,0 +1,46 @@
+# Source files (TypeScript sources are in the package)
+# src/ is needed for React Native
+wasm-core/
+example/
+.claude/
+.git/
+.npmignore
+
+# Build scripts
+build-wasm.sh
+tsconfig.json
+biome.json
+CLAUDE.md
+
+# Lock files
+bun.lock
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# Development
+node_modules/
+*.log
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+coverage/
+__tests__/
+*.test.ts
+*.test.tsx
+
+# iOS
+ios/build/
+*.xcworkspace/
+*.xcuserdata/
+
+# Android
+android/build/
+android/.gradle/
+android/local.properties
