@@ -35,6 +35,7 @@ Built with React Native's New Architecture:
 - React Native 0.80.0 or higher
 - React 19.0.0 or higher
 - New Architecture enabled ([Migration Guide](https://reactnative.dev/docs/new-architecture-intro))
+- Node.js 22.0.0 or higher
 
 ### Install
 
@@ -45,6 +46,8 @@ yarn add react-native-turbo-toast
 # or
 bun add react-native-turbo-toast
 ```
+
+**Current Version**: v0.1.1 - [View on npm](https://www.npmjs.com/package/react-native-turbo-toast)
 
 ### iOS Setup
 
@@ -193,6 +196,22 @@ Toast.configure({
   }
 })
 ```
+
+## 📈 Package Stats
+
+- **Bundle Size**: 127.1 kB (compressed), 360.0 kB (unpacked)
+- **Runtime Size**: <20KB (excluding WASM)
+- **Dependencies**: Zero runtime dependencies
+- **Platforms**: iOS 13.0+, Android API 21+, Web
+- **Architecture**: New Architecture ready, legacy compatible
+
+## 🔗 Links
+
+- **npm Package**: https://www.npmjs.com/package/react-native-turbo-toast
+- **GitHub Repository**: https://github.com/openslm-ai/react-native-turbo-toast
+- **Issues & Support**: https://github.com/openslm-ai/react-native-turbo-toast/issues
+- **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md)
+- **Security**: [SECURITY.md](SECURITY.md)
 
 ## 📄 License
 
