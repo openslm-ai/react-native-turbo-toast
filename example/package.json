@@ -1,0 +1,25 @@
+{
+  "name": "react-native-turbo-toast-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "lint": "biome check --write .",
+    "format": "biome format --write ."
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-native": "^0.80.0",
+    "react-native-turbo-toast": "file:.."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.4",
+    "@react-native/babel-preset": "^0.80.0",
+    "@react-native/metro-config": "^0.80.0",
+    "@react-native/typescript-config": "^0.80.0",
+    "@types/react": "^19.0.0",
+    "typescript": "^5.5.0"
+  }
+}
