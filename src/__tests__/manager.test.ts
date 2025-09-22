@@ -1,4 +1,4 @@
-import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals'
+import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals'
 import { Platform } from 'react-native'
 import { ToastManager } from '../manager'
 import type { ToastOptions } from '../types'
@@ -7,6 +7,10 @@ import type { ToastOptions } from '../types'
 jest.mock('react-native', () => ({
   Platform: {
     OS: 'ios',
+  },
+  NativeModules: {},
+  TurboModuleRegistry: {
+    getEnforcing: jest.fn(),
   },
 }))
 

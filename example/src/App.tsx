@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
-  TextInput,
 } from 'react-native'
 import Toast from 'react-native-turbo-toast'
 
@@ -16,9 +16,9 @@ const DURATIONS = ['short', 'long'] as const
 
 export default function App() {
   const [message, setMessage] = useState('Hello from TurboToast!')
-  const [type, setType] = useState<typeof TOAST_TYPES[number]>('default')
-  const [position, setPosition] = useState<typeof POSITIONS[number]>('bottom')
-  const [duration, setDuration] = useState<typeof DURATIONS[number]>('short')
+  const [type, setType] = useState<(typeof TOAST_TYPES)[number]>('default')
+  const [position, setPosition] = useState<(typeof POSITIONS)[number]>('bottom')
+  const [duration, setDuration] = useState<(typeof DURATIONS)[number]>('short')
   const [customDuration, setCustomDuration] = useState('')
   const [backgroundColor, setBackgroundColor] = useState('')
   const [textColor, setTextColor] = useState('')

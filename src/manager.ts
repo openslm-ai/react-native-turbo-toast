@@ -111,16 +111,21 @@ export class ToastManager {
   private showWebToast(toast: QueuedToast): void {
     this.queue.addActive(toast)
 
-    this.webRenderer.render(toast, (id) => this.hideToast(id))
+    try {
+      this.webRenderer.render(toast, (id) => this.hideToast(id))
 
-    if (toast.onShow) {
-      toast.onShow()
+      if (toast.onShow) {
+        toast.onShow()
+      }
+
+      const duration = calculateDuration(toast.duration)
+      setTimeout(() => {
+        this.hideToast(toast.id)
+      }, duration)
+    } catch (error) {
+      console.error('[TurboToast] Failed to show web toast:', error)
+      this.queue.removeActive(toast.id)
     }
-
-    const duration = calculateDuration(toast.duration)
-    setTimeout(() => {
-      this.hideToast(toast.id)
-    }, duration)
   }
 
   private hideToast(id: string): void {

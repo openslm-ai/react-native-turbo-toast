@@ -1,7 +1,7 @@
 import type { ToastDuration } from './types'
 
 export function generateId(): string {
-  return `toast_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+  return `toast-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
 }
 
 export function calculateDuration(duration?: ToastDuration): number {

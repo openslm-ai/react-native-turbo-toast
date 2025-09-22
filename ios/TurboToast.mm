@@ -29,11 +29,16 @@ RCT_EXPORT_MODULE(TurboToast)
     (const facebook::react::ObjCTurboModule::InitParams &)params {
     return std::make_shared<facebook::react::NativeTurboToastSpecJSI>(params);
 }
-#endif
 
-- (void)show:(JS::NativeTurboToast::NativeToastOptions &)options
+- (void)show:(NSDictionary *)options
      resolve:(RCTPromiseResolveBlock)resolve
       reject:(RCTPromiseRejectBlock)reject {
+#else
+
+RCT_EXPORT_METHOD(show:(NSDictionary *)options
+                resolve:(RCTPromiseResolveBlock)resolve
+                 reject:(RCTPromiseRejectBlock)reject) {
+#endif
 
     dispatch_async(dispatch_get_main_queue(), ^{
         @try {
@@ -41,24 +46,21 @@ RCT_EXPORT_MODULE(TurboToast)
             [self hideCurrentToast];
 
             // Extract options
-            NSString *message = options.message();
-            NSString *position = options.position() ? options.position().value() : @"bottom";
-            NSString *type = options.type() ? options.type().value() : @"default";
-            NSString *backgroundColor = options.backgroundColor() ? options.backgroundColor().value() : nil;
-            NSString *textColor = options.textColor() ? options.textColor().value() : @"#FFFFFF";
+            NSString *message = options[@"message"] ?: @"";
+            NSString *position = options[@"position"] ?: @"bottom";
+            NSString *type = options[@"type"] ?: @"default";
+            NSString *backgroundColor = options[@"backgroundColor"];
+            NSString *textColor = options[@"textColor"] ?: @"#FFFFFF";
 
             // Duration handling
             NSTimeInterval duration = 2.0; // default short
-            if (options.duration()) {
-                auto durationOpt = options.duration().value();
-                if (std::holds_alternative<std::string>(durationOpt)) {
-                    NSString *durationStr = [NSString stringWithUTF8String:std::get<std::string>(durationOpt).c_str()];
-                    if ([durationStr isEqualToString:@"long"]) {
-                        duration = 3.5;
-                    }
-                } else if (std::holds_alternative<double>(durationOpt)) {
-                    duration = std::get<double>(durationOpt) / 1000.0;
+            id durationValue = options[@"duration"];
+            if ([durationValue isKindOfClass:[NSString class]]) {
+                if ([durationValue isEqualToString:@"long"]) {
+                    duration = 3.5;
                 }
+            } else if ([durationValue isKindOfClass:[NSNumber class]]) {
+                duration = [durationValue doubleValue] / 1000.0;
             }
 
             // Create toast view
@@ -87,13 +89,21 @@ RCT_EXPORT_MODULE(TurboToast)
     });
 }
 
+#ifdef RCT_NEW_ARCH_ENABLED
 - (void)hide {
+#else
+RCT_EXPORT_METHOD(hide) {
+#endif
     dispatch_async(dispatch_get_main_queue(), ^{
         [self hideCurrentToast];
     });
 }
 
+#ifdef RCT_NEW_ARCH_ENABLED
 - (void)hideAll {
+#else
+RCT_EXPORT_METHOD(hideAll) {
+#endif
     dispatch_async(dispatch_get_main_queue(), ^{
         [self hideCurrentToast];
     });
@@ -220,9 +230,9 @@ RCT_EXPORT_MODULE(TurboToast)
     }
 
     if (self.currentToastView) {
-        [self animateToastOut:self.currentToastView completion:^{
-            self.currentToastView = nil;
-        }];
+        UIView *toastToHide = self.currentToastView;
+        self.currentToastView = nil; // Clear reference immediately
+        [self animateToastOut:toastToHide completion:nil];
     }
 }
 
