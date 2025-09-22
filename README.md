@@ -3,9 +3,14 @@
 High-performance toast notifications for React Native using the New Architecture (Fabric & TurboModules). Direct JSI calls for 3x faster performance.
 
 [![npm version](https://img.shields.io/npm/v/react-native-turbo-toast.svg)](https://www.npmjs.com/package/react-native-turbo-toast)
+[![npm downloads](https://img.shields.io/npm/dm/react-native-turbo-toast.svg)](https://www.npmjs.com/package/react-native-turbo-toast)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![React Native](https://img.shields.io/badge/React%20Native-0.80+-blue.svg)](https://reactnative.dev)
 [![New Architecture](https://img.shields.io/badge/New%20Architecture-Ready-green.svg)](https://reactnative.dev/docs/the-new-architecture/landing-page)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+[![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20Android%20%7C%20Web-lightgrey.svg)](https://reactnative.dev)
+[![Bundle Size](https://img.shields.io/badge/Bundle%20Size-<20KB-brightgreen.svg)](https://bundlephobia.com/package/react-native-turbo-toast)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/openslm-ai/react-native-turbo-toast/pulls)
 
 ## ✨ Features
 
