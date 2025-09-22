@@ -1,6 +1,6 @@
 {
   "name": "react-native-turbo-toast",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lightning-fast toast notifications for React Native with JSI and TurboModules",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

@@ -2,6 +2,9 @@
 # src/ is needed for React Native
 wasm-core/
 example/
+# Exclude WASM files for now (development only)
+src/wasm/turbo_toast_core_bg.wasm
+lib/**/wasm/turbo_toast_core_bg.wasm
 .git/
 .npmignore
 
@@ -29,9 +32,12 @@ node_modules/
 
 # Testing
 coverage/
-__tests__/
+src/__tests__/
+**/__tests__/
 *.test.ts
 *.test.tsx
+jest.config.js
+jest.setup.js
 
 # iOS
 ios/build/
