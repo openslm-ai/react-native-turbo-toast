@@ -4,21 +4,19 @@ import { ToastManager } from '../manager'
 import type { ToastOptions } from '../types'
 
 // Mock dependencies
+const mockNativeTurboToast = {
+  show: jest.fn().mockResolvedValue(undefined),
+  hide: jest.fn(),
+  hideAll: jest.fn(),
+}
+
 jest.mock('react-native', () => ({
   Platform: {
     OS: 'ios',
   },
   NativeModules: {},
   TurboModuleRegistry: {
-    getEnforcing: jest.fn(),
-  },
-}))
-
-jest.mock('../NativeTurboToast', () => ({
-  default: {
-    show: jest.fn().mockResolvedValue(undefined),
-    hide: jest.fn(),
-    hideAll: jest.fn(),
+    getEnforcing: jest.fn(() => mockNativeTurboToast),
   },
 }))
 
@@ -33,7 +31,7 @@ jest.mock('../utils', () => ({
     if (typeof duration === 'number') return duration
     return 2000
   }),
-  generateId: jest.fn(() => 'test-id-' + Math.random()),
+  generateId: jest.fn(() => `test-id-${Math.random()}`),
   triggerHaptic: jest.fn(),
 }))
 
@@ -43,12 +41,17 @@ describe('ToastManager', () => {
   beforeEach(() => {
     jest.clearAllMocks()
     // Reset singleton instance
-    ;(ToastManager as any).instance = undefined
+    // @ts-expect-error - Accessing private property for testing
+    ToastManager.instance = undefined
     manager = ToastManager.getInstance()
   })
 
   afterEach(() => {
     jest.useRealTimers()
+    // Clean up manager instance
+    if (manager) {
+      manager.destroy()
+    }
   })
 
   describe('getInstance', () => {
@@ -166,14 +169,16 @@ describe('ToastManager', () => {
 
   describe('Platform specific behavior', () => {
     it('should use web renderer on web platform', () => {
-      ;(Platform as any).OS = 'web'
+      // @ts-expect-error - Mocking Platform.OS for testing
+      Platform.OS = 'web'
       const webManager = ToastManager.getInstance()
       webManager.show('Web toast')
       // Should use WebRenderer instead of NativeTurboToast
     })
 
     it('should use native module on mobile platforms', () => {
-      ;(Platform as any).OS = 'ios'
+      // @ts-expect-error - Mocking Platform.OS for testing
+      Platform.OS = 'ios'
       const iosManager = ToastManager.getInstance()
       iosManager.show('iOS toast')
       // Should use NativeTurboToast

@@ -9,11 +9,11 @@ describe('ToastQueue', () => {
     id,
     message: `Toast ${id}`,
     timestamp: Date.now(),
-    priority,
+    priority: priority || 0,
   })
 
   beforeEach(() => {
-    queue = new ToastQueue(2) // Max 2 concurrent
+    queue = new ToastQueue({ maxConcurrent: 2 }) // Max 2 concurrent
   })
 
   describe('enqueue', () => {

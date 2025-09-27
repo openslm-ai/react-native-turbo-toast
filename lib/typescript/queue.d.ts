@@ -1,22 +1,43 @@
-import type { QueuedToast } from './types';
+import type { QueuedToast, QueueStats, ToastConfig } from './types';
 export declare class ToastQueue {
     private queue;
     private activeToasts;
+    private groupToasts;
     private isProcessing;
     private maxConcurrent;
-    constructor(maxConcurrent?: number);
-    enqueue(toast: QueuedToast): void;
+    private maxQueueSize;
+    private groupDeduplication;
+    private queueTimeout;
+    private eventHandler?;
+    private cleanupTimer?;
+    constructor(config?: ToastConfig);
+    getQueue(): QueuedToast[];
+    enqueue(toast: QueuedToast): boolean;
     dequeue(): QueuedToast | undefined;
     addActive(toast: QueuedToast): void;
     removeActive(id: string): QueuedToast | undefined;
     getActive(id: string): QueuedToast | undefined;
     getAllActive(): QueuedToast[];
     findDuplicate(message: string): QueuedToast | undefined;
+    findInGroup(group: string, message?: string): QueuedToast | undefined;
+    findByGroup(group: string): QueuedToast[];
+    clearGroup(group: string): QueuedToast[];
     clear(): void;
     hasCapacity(): boolean;
     get size(): number;
     get activeSize(): number;
     setProcessing(value: boolean): void;
     get processing(): boolean;
+    getStats(): QueueStats;
+    updateToast(id: string, updates: Partial<QueuedToast>): boolean;
+    private findInsertIndex;
+    private findLowestPriorityIndex;
+    private updateQueuePositions;
+    private addToGroup;
+    private removeFromGroup;
+    private emitEvent;
+    private startCleanupTimer;
+    private cleanupExpiredToasts;
+    destroy(): void;
 }
 //# sourceMappingURL=queue.d.ts.map

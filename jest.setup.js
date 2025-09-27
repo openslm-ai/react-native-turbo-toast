@@ -1,6 +1,9 @@
 // Mock React Native modules
 global.__DEV__ = true;
 
+// Mock NativeTurboToast module
+jest.mock('./src/NativeTurboToast');
+
 // Mock native modules that aren't available in test environment
 jest.mock('react-native', () => {
   const actualReactNative = jest.requireActual('react-native');
@@ -53,5 +56,14 @@ Object.defineProperty(global, 'navigator', {
 
 Object.defineProperty(global, 'requestAnimationFrame', {
   value: jest.fn((cb) => setTimeout(cb, 0)),
+  writable: true,
+});
+
+// Mock window object
+Object.defineProperty(global, 'window', {
+  value: {
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+  },
   writable: true,
 });

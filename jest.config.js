@@ -1,13 +1,15 @@
 module.exports = {
-  preset: '@react-native/babel-preset',
+  preset: 'react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   transform: {
-    '^.+\\.(ts|tsx)$': 'babel-jest',
+    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
   testMatch: ['**/__tests__/**/*.(ts|tsx|js|jsx)', '**/*.(test|spec).(ts|tsx|js|jsx)'],
-  moduleNameMapping: {
-    '^react-native$': '<rootDir>/node_modules/react-native/jest/mock.js',
-  },
+  transformIgnorePatterns: [
+    'node_modules/(?!(react-native|@react-native)/)',
+  ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   testEnvironment: 'node',
+  modulePathIgnorePatterns: ['<rootDir>/lib/'],
+  automock: false,
 }

@@ -1,19 +1,44 @@
-import type { ToastConfig, ToastOptions } from './types';
+import type { QueuedToast, QueueStats, ToastConfig, ToastOptions } from './types';
 export declare class ToastManager {
     private static instance;
     private queue;
     private webRenderer;
+    private activeTimers;
+    private retryAttempts;
+    private maxRetries;
+    private retryDelay;
+    private isDestroyed;
+    private customViewHandler;
+    private config;
     private defaultOptions;
     private constructor();
+    private handleNativeAction;
     static getInstance(): ToastManager;
+    private initializePersistence;
+    getConfig(): ToastConfig;
     configure(config: ToastConfig): void;
     show(options: ToastOptions | string): string;
     private processQueue;
+    private showNativeToast;
     private showWebToast;
     private hideToast;
     hide(id?: string): void;
     hideAll(): void;
-    update(id: string, options: Partial<ToastOptions>): void;
+    update(id: string, options: Partial<ToastOptions>): boolean;
+    private clearTimer;
     private toNativeOptions;
+    destroy(): void;
+    isActive(id: string): boolean;
+    getActiveToasts(): QueuedToast[];
+    getQueuedToasts(): QueuedToast[];
+    setCustomViewHandler(handler: (() => void) | null): void;
+    getQueueStats(): QueueStats;
+    clearGroup(group: string): QueuedToast[];
+    findByGroup(group: string): QueuedToast[];
+    updateToast(id: string, updates: Partial<ToastOptions>): boolean;
+    reorderToast(id: string, newPriority: number): boolean;
+    pauseQueue(): void;
+    resumeQueue(): void;
+    getToastPosition(id: string): number | undefined;
 }
 //# sourceMappingURL=manager.d.ts.map

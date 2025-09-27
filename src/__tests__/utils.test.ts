@@ -1,9 +1,14 @@
-import { describe, expect, it, jest } from '@jest/globals'
+import { describe, expect, it } from '@jest/globals'
 import { calculateDuration, generateId, triggerHaptic } from '../utils'
 
-// Mock react-native-haptic-feedback
-jest.mock('react-native-haptic-feedback', () => ({
-  trigger: jest.fn(),
+// Mock react-native
+jest.mock('react-native', () => ({
+  Platform: {
+    OS: 'ios',
+  },
+  Vibration: {
+    vibrate: jest.fn(),
+  },
 }))
 
 describe('utils', () => {
@@ -25,7 +30,8 @@ describe('utils', () => {
     })
 
     it('should return 2000 for invalid input', () => {
-      expect(calculateDuration('invalid' as any)).toBe(2000)
+      // @ts-expect-error - Testing invalid input
+      expect(calculateDuration('invalid')).toBe(2000)
     })
   })
 
@@ -80,7 +86,8 @@ describe('utils', () => {
     })
 
     it('should handle undefined feedback', () => {
-      expect(() => triggerHaptic(undefined as any)).not.toThrow()
+      // @ts-expect-error - Testing undefined input
+      expect(() => triggerHaptic(undefined)).not.toThrow()
     })
   })
 })

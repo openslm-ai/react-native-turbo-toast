@@ -1,5 +1,6 @@
 import type { TurboModule } from 'react-native';
 export interface NativeToastOptions {
+    id?: string;
     message: string;
     duration?: 'short' | 'long' | number;
     position?: 'top' | 'center' | 'bottom';
@@ -11,6 +12,12 @@ export interface NativeToastOptions {
         text: string;
         onPress: () => void;
     };
+    dismissOnPress?: boolean;
+    swipeToDismiss?: boolean;
+    animationDuration?: number;
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
+    accessibilityRole?: 'alert' | 'status';
 }
 export interface Spec extends TurboModule {
     show(options: NativeToastOptions): Promise<void>;

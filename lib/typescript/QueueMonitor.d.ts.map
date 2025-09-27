@@ -1,0 +1,1 @@
+{"version":3,"file":"QueueMonitor.d.ts","sourceRoot":"","sources":["../../src/QueueMonitor.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,KAAK,MAAM,OAAO,CAAA;AAM9B,UAAU,iBAAiB;IACzB,OAAO,CAAC,EAAE,OAAO,CAAA;IACjB,OAAO,CAAC,EAAE,MAAM,IAAI,CAAA;IACpB,eAAe,CAAC,EAAE,MAAM,CAAA;CACzB;AAED,eAAO,MAAM,YAAY,EAAE,KAAK,CAAC,EAAE,CAAC,iBAAiB,CAyOpD,CAAA"}

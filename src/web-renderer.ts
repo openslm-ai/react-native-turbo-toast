@@ -29,6 +29,27 @@ export class WebRenderer {
     return toastEl
   }
 
+  update(id: string, options: Partial<QueuedToast>): void {
+    const toastEl = document.getElementById(id)
+    if (!toastEl) return
+
+    // Update message if provided
+    if (options.message) {
+      const content = toastEl.querySelector('.turbo-toast-content')
+      if (content) {
+        content.textContent = options.message
+      }
+    }
+
+    // Update progress bar if provided
+    if (options.progress !== undefined) {
+      const progressBar = toastEl.querySelector('.turbo-toast-progress-bar') as HTMLElement
+      if (progressBar) {
+        progressBar.style.width = `${options.progress * 100}%`
+      }
+    }
+  }
+
   remove(id: string, animationDuration = 300): Promise<void> {
     return new Promise((resolve) => {
       const toastEl = document.getElementById(id)
@@ -37,7 +58,17 @@ export class WebRenderer {
         return
       }
 
-      const toast = toastEl.dataset.toast ? JSON.parse(toastEl.dataset.toast) : {}
+      // Clean up event listeners before removal
+      this.cleanupEventListeners(toastEl)
+
+      let toast: { position?: ToastPosition } = {}
+      try {
+        toast = toastEl.dataset.toast ? JSON.parse(toastEl.dataset.toast) : {}
+      } catch (_e) {
+        // Fallback if JSON parsing fails silently
+        // In production, we don't want to log errors
+      }
+
       this.animateOut(toastEl, toast.position)
 
       setTimeout(() => {
@@ -49,10 +80,44 @@ export class WebRenderer {
     })
   }
 
+  private cleanupEventListeners(element: HTMLElement): void {
+    // Clean up swipe handlers
+    const handlers = (
+      element as HTMLElement & {
+        _swipeHandlers?: {
+          handleStart: (e: Event) => void
+          handleMove: (e: Event) => void
+          handleEnd: (e: Event) => void
+        }
+      }
+    )._swipeHandlers
+    if (handlers) {
+      element.removeEventListener('touchstart', handlers.handleStart)
+      element.removeEventListener('touchmove', handlers.handleMove)
+      element.removeEventListener('touchend', handlers.handleEnd)
+      delete (element as HTMLElement & { _swipeHandlers?: unknown })._swipeHandlers
+    }
+  }
+
   private createElement(toast: QueuedToast): HTMLElement {
     const toastEl = document.createElement('div')
     toastEl.id = toast.id
     toastEl.className = 'turbo-toast'
+
+    // Accessibility attributes
+    toastEl.setAttribute('role', toast.accessibilityRole || 'alert')
+    if (toast.accessibilityLabel) {
+      toastEl.setAttribute('aria-label', toast.accessibilityLabel)
+    }
+    if (toast.accessibilityHint) {
+      toastEl.setAttribute('aria-description', toast.accessibilityHint)
+    }
+    toastEl.setAttribute('aria-live', toast.type === 'error' ? 'assertive' : 'polite')
+
+    if (!toastEl.dataset) {
+      // For test environments where dataset might not be available
+      Object.defineProperty(toastEl, 'dataset', { value: {}, writable: true })
+    }
     toastEl.dataset.toast = JSON.stringify({ position: toast.position })
 
     const content = document.createElement('div')
@@ -67,6 +132,22 @@ export class WebRenderer {
     }
 
     toastEl.appendChild(content)
+
+    // Add progress bar if needed
+    if (toast.showProgressBar && toast.progress !== undefined) {
+      const progressContainer = document.createElement('div')
+      progressContainer.className = 'turbo-toast-progress-container'
+      progressContainer.style.cssText =
+        'position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: rgba(255,255,255,0.2); overflow: hidden;'
+
+      const progressBar = document.createElement('div')
+      progressBar.className = 'turbo-toast-progress-bar'
+      progressBar.style.cssText = `width: ${toast.progress * 100}%; height: 100%; background: ${toast.progressColor || '#fff'}; transition: width 0.3s ease;`
+
+      progressContainer.appendChild(progressBar)
+      toastEl.appendChild(progressContainer)
+    }
+
     return toastEl
   }
 
@@ -125,6 +206,11 @@ export class WebRenderer {
       const btn = document.createElement('button')
       btn.textContent = action.text
       btn.className = `turbo-toast-action turbo-toast-action-${action.style || 'default'}`
+      btn.setAttribute('type', 'button')
+      btn.setAttribute('aria-label', action.text)
+      if (action.style === 'destructive') {
+        btn.setAttribute('aria-describedby', 'This action cannot be undone')
+      }
       btn.onclick = () => {
         action.onPress()
         onDismiss(toast.id)
@@ -201,6 +287,21 @@ export class WebRenderer {
         element.style.transform = 'translate(-50%, 0)'
         element.style.opacity = '1'
       }
+    }
+
+    // Store handlers for cleanup
+    ;(
+      element as HTMLElement & {
+        _swipeHandlers?: {
+          handleStart: (e: Event) => void
+          handleMove: (e: Event) => void
+          handleEnd: (e: Event) => void
+        }
+      }
+    )._swipeHandlers = {
+      handleStart: handleStart as (e: Event) => void,
+      handleMove: handleMove as (e: Event) => void,
+      handleEnd: handleEnd as (e: Event) => void,
     }
 
     element.addEventListener('touchstart', handleStart, { passive: true })
