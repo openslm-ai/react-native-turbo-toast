@@ -78,7 +78,11 @@ export const ToastContainer: React.FC<ToastContainerProps> = ({ children }) => {
 
 const styles = StyleSheet.create({
   container: {
-    ...StyleSheet.absoluteFillObject,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     zIndex: 99999,
     elevation: 99999,
   },

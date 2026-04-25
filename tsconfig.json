@@ -1,5 +1,5 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json",
+  "extends": "@react-native/typescript-config",
   "compilerOptions": {
     "outDir": "lib/typescript",
     "rootDir": "src",
@@ -16,7 +16,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "lib": ["ES2022", "DOM", "WebWorker"]
+    "lib": ["ES2022", "DOM", "WebWorker"],
+    "types": ["jest"]
   },
   "include": ["src/**/*"],
   "exclude": [
