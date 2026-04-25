@@ -9,6 +9,8 @@
 
 [![npm version](https://img.shields.io/npm/v/react-native-turbo-toast.svg?style=flat-square)](https://www.npmjs.com/package/react-native-turbo-toast)
 [![npm downloads](https://img.shields.io/npm/dm/react-native-turbo-toast.svg?style=flat-square)](https://www.npmjs.com/package/react-native-turbo-toast)
+[![CI](https://img.shields.io/github/actions/workflow/status/openslm-ai/react-native-turbo-toast/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/openslm-ai/react-native-turbo-toast/actions/workflows/ci.yml)
+[![Provenance](https://img.shields.io/badge/npm-provenance-success?style=flat-square&logo=npm)](https://docs.npmjs.com/generating-provenance-statements)
 [![Bundle Size](https://img.shields.io/bundlephobia/minzip/react-native-turbo-toast?style=flat-square)](https://bundlephobia.com/package/react-native-turbo-toast)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
