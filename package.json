@@ -58,18 +58,18 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.4",
-    "@react-native/babel-preset": "^0.81.0",
-    "@react-native/codegen": "^0.81.0",
-    "@react-native/typescript-config": "^0.81.0",
+    "@react-native/babel-preset": "^0.85.2",
+    "@react-native/codegen": "^0.85.2",
+    "@react-native/typescript-config": "^0.85.2",
     "@types/jest": "^30.0.0",
     "@types/react": "^19.0.0",
-    "babel-jest": "^29.7.0",
-    "jest": "^29.7.0",
+    "babel-jest": "^30.3.0",
+    "jest": "^30.3.0",
     "react": "^19.0.0",
-    "react-native": "^0.81.0",
-    "react-native-builder-bob": "^0.40.0",
-    "release-it": "^17.0.0",
-    "typescript": "^5.9.0"
+    "react-native": "^0.85.2",
+    "react-native-builder-bob": "^0.41.0",
+    "release-it": "^20.0.1",
+    "typescript": "^6.0.3"
   },
   "react-native-builder-bob": {
     "source": "src",
