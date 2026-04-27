@@ -1,6 +1,9 @@
 # 🍞 react-native-turbo-toast
 
 <div align="center">
+
+[![an OpenSLM project](https://img.shields.io/badge/an%20OpenSLM-project-0b1118?style=flat-square&labelColor=0b1118)](https://github.com/openslm-ai)
+
   <h3>⚡ Lightning-fast toast notifications for React Native</h3>
   <p>Built with TurboModules • TypeScript • Full Platform Support</p>
 </div>
@@ -455,9 +458,15 @@ npm test
 # Submit PR
 ```
 
+## 🏛️ About OpenSLM
+
+`react-native-turbo-toast` is part of [OpenSLM](https://github.com/openslm-ai) —
+an open collection of on-device tooling for React Native and AI runtimes. More
+projects in the [OpenSLM org](https://github.com/openslm-ai).
+
 ## 📄 License
 
-MIT © [Anivar Aravind](https://github.com/anivar)
+MIT © [Anivar Aravind](https://github.com/anivar) / [OpenSLM](https://github.com/openslm-ai)
 
 ---
 

@@ -1,3 +1,4 @@
+// react-native-turbo-toast — an OpenSLM project. https://github.com/openslm-ai
 package com.turbo.toast
 
 import android.app.Activity
