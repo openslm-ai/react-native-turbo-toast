@@ -4,3 +4,7 @@ node_modules/
 coverage/
 .idea/
 .vscode/
+
+# Stale yarn lockfile — repo migrated to bun
+yarn.lock
+package-lock.json

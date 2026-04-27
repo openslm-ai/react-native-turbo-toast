@@ -22,10 +22,9 @@
 [![Android Support](https://img.shields.io/badge/Android-5.0+-3DDC84.svg?style=flat-square&logo=android&logoColor=white)](https://developer.android.com)
 [![Web Support](https://img.shields.io/badge/Web-ES6+-F7DF1E.svg?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org)
 
-[![React Native](https://img.shields.io/badge/React_Native-0.73+-61DAFB.svg?style=flat-square&logo=react&logoColor=black)](https://reactnative.dev)
+[![React Native](https://img.shields.io/badge/React_Native-0.81+-61DAFB.svg?style=flat-square&logo=react&logoColor=black)](https://reactnative.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6.svg?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-105_passing-success?style=flat-square)](./src/__tests__)
-[![Coverage](https://img.shields.io/badge/Coverage-95%25-brightgreen?style=flat-square)](./src/__tests__)
 
 </div>
 
@@ -37,10 +36,9 @@
 
 **🚀 Performance First**
 - TurboModule architecture (no bridge overhead)
-- Native driver animations (60fps)
-- Optimized queue operations O(log n)
-- < 25KB bundle impact
-- < 5ms initialization
+- Native driver animations
+- Priority-ordered queue with deterministic show ordering
+- Lean bundle (see Bundlephobia badge above)
 
 </td>
 <td>
@@ -229,11 +227,10 @@ Toast.show({
 ### 🪝 React Hooks
 
 ```tsx
-import { useToast, useToastQueue } from 'react-native-turbo-toast'
+import Toast, { useToastQueue } from 'react-native-turbo-toast'
 
 function Component() {
-  const toast = useToast()
-  const { stats, events } = useToastQueue()
+  const { stats } = useToastQueue()
 
   return (
     <View>
@@ -241,7 +238,7 @@ function Component() {
       <Text>⏳ Queued: {stats.pending}</Text>
       <Button
         title="Show Toast"
-        onPress={() => toast.show('Hello!')}
+        onPress={() => Toast.show('Hello!')}
       />
     </View>
   )
@@ -377,16 +374,9 @@ const config: ToastConfig = {
 }
 ```
 
-## 📊 Performance Metrics
+## 📊 Footprint
 
-| Metric | Value | Notes |
-|--------|-------|-------|
-| 📦 Bundle Size | < 25KB | Minified + gzipped |
-| 🧠 Memory Usage | < 1MB | Per active toast |
-| 🎬 Animations | 60fps | Native driver |
-| ⚡ Queue Ops | < 1ms | O(log n) complexity |
-| 🚀 Cold Start | < 5ms | Initial setup |
-| 📱 Show Toast | < 10ms | Call to display |
+Bundle size is reported live by the badge at the top of this README (Bundlephobia). Animations run on the React Native native driver, and toasts are kept in a priority-ordered queue with deterministic show ordering (priority desc, FIFO within the same priority).
 
 ## 🔗 API Reference
 
@@ -436,10 +426,9 @@ npm run ios
 
 # Android
 npm run android
-
-# Web
-npm run web
 ```
+
+Web works against the published library out of the box — drop `react-native-turbo-toast` into any React Native Web app and it renders via DOM with touch events.
 
 ## 🤝 Contributing
 

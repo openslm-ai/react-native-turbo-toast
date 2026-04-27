@@ -119,22 +119,11 @@ export const updateProgress = (id: string, progress: number, message?: string) =
     ...(message && { message }),
   })
 
-// Export components
+// Export components and hooks
 export { TurboToastView }
-
-// Only export React Native components if not in test environment
-if (typeof jest === 'undefined') {
-  try {
-    // Dynamic imports to ensure components are available
-    require('./ToastContainer')
-    require('./CustomToastView')
-    require('./QueueMonitor')
-    require('./useToastQueue')
-    // These are already exported as ES modules above
-  } catch {
-    // Components not available in this environment
-  }
-}
+export { ToastContainer, withToastContainer } from './ToastContainer'
+export { QueueMonitor } from './QueueMonitor'
+export { useToastQueue, useToastStats } from './useToastQueue'
 
 // Default export
 export default {

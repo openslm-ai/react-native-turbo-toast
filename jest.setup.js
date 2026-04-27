@@ -4,6 +4,17 @@ global.__DEV__ = true;
 // Mock NativeTurboToast module
 jest.mock('./src/NativeTurboToast');
 
+// CustomToastView, ToastContainer, and QueueMonitor call StyleSheet.create at
+// module-import time. The partial RN mock below doesn't fully cover that path,
+// and these modules aren't exercised by unit tests.
+jest.mock('./src/CustomToastView', () => ({ CustomToastView: () => null }));
+jest.mock('./src/ToastContainer', () => ({
+  ToastContainer: ({ children }) => children,
+  withToastContainer: (C) => C,
+}));
+jest.mock('./src/QueueMonitor', () => ({ QueueMonitor: () => null }));
+
+
 // Mock native modules that aren't available in test environment
 jest.mock('react-native', () => {
   const actualReactNative = jest.requireActual('react-native');
