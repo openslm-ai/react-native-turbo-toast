@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0]
+
+### Added
+- TurboModule spec: `actions?: NativeToastAction[]` field for native multi-action toasts (the JS-side feature already existed; the spec now matches it).
+
+### Changed
+- Drop dead `lib/{commonjs,module,typescript}/wasm/*` artifacts from the published build.
+- Override vulnerable transitive deps (`basic-ftp`, `brace-expansion`, `js-yaml`, `picomatch`, `yaml`) at patched versions.
+- Brand: README and native entry points carry the OpenSLM project mark.
+
+## [1.0.1]
+
+### Fixed
+- Maintenance release (no changelog entry was authored at the time).
+
 ## 🎉 [1.0.0]
 
 ### ✨ Added
