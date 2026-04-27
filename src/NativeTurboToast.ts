@@ -1,6 +1,12 @@
 import type { TurboModule } from 'react-native'
 import { TurboModuleRegistry } from 'react-native'
 
+export interface NativeToastAction {
+  text: string
+  onPress: () => void
+  style?: 'default' | 'cancel' | 'destructive'
+}
+
 export interface NativeToastOptions {
   id?: string
   message: string
@@ -10,10 +16,8 @@ export interface NativeToastOptions {
   backgroundColor?: string
   textColor?: string
   icon?: string
-  action?: {
-    text: string
-    onPress: () => void
-  }
+  action?: NativeToastAction
+  actions?: NativeToastAction[]
   dismissOnPress?: boolean
   swipeToDismiss?: boolean
   animationDuration?: number
