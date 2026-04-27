@@ -1,4 +1,4 @@
-// react-native-turbo-toast — an OpenSLM project. https://github.com/openslm-ai
+// react-native-turbo-toast. https://github.com/anivar/react-native-turbo-toast
 #import "TurboToast.h"
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>

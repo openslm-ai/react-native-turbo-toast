@@ -1,9 +1,6 @@
 # 🍞 react-native-turbo-toast
 
 <div align="center">
-
-[![an OpenSLM project](https://img.shields.io/badge/an%20OpenSLM-project-0b1118?style=flat-square&labelColor=0b1118)](https://github.com/openslm-ai)
-
   <h3>⚡ Lightning-fast toast notifications for React Native</h3>
   <p>Built with TurboModules • TypeScript • Full Platform Support</p>
 </div>
@@ -12,7 +9,7 @@
 
 [![npm version](https://img.shields.io/npm/v/react-native-turbo-toast.svg?style=flat-square)](https://www.npmjs.com/package/react-native-turbo-toast)
 [![npm downloads](https://img.shields.io/npm/dm/react-native-turbo-toast.svg?style=flat-square)](https://www.npmjs.com/package/react-native-turbo-toast)
-[![CI](https://img.shields.io/github/actions/workflow/status/openslm-ai/react-native-turbo-toast/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/openslm-ai/react-native-turbo-toast/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/anivar/react-native-turbo-toast/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/anivar/react-native-turbo-toast/actions/workflows/ci.yml)
 [![Provenance](https://img.shields.io/badge/npm-provenance-success?style=flat-square&logo=npm)](https://docs.npmjs.com/generating-provenance-statements)
 [![Bundle Size](https://img.shields.io/bundlephobia/minzip/react-native-turbo-toast?style=flat-square)](https://bundlephobia.com/package/react-native-turbo-toast)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
@@ -447,15 +444,9 @@ npm test
 # Submit PR
 ```
 
-## 🏛️ About OpenSLM
-
-`react-native-turbo-toast` is part of [OpenSLM](https://github.com/openslm-ai) —
-an open collection of on-device tooling for React Native and AI runtimes. More
-projects in the [OpenSLM org](https://github.com/openslm-ai).
-
 ## 📄 License
 
-MIT © [Anivar Aravind](https://github.com/anivar) / [OpenSLM](https://github.com/openslm-ai)
+MIT © [Anivar Aravind](https://github.com/anivar)
 
 ---
 
